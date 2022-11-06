@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 /**
@@ -40,7 +41,7 @@ public class PatientMonitorAssignController {
             value = "create patient monitor assign",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientMonitorAssignResponse> create(
-            @RequestBody CreatePatientMonitorAssignRequest request) {
+            @Valid @RequestBody CreatePatientMonitorAssignRequest request) {
         PatientMonitorAssign item = service.create(request);
         PatientMonitorAssignResponse response = PatientMonitorAssignResponse.from(item);
         return ResponseEntity.ok(response);
@@ -51,7 +52,7 @@ public class PatientMonitorAssignController {
             value = "find patient monitor assign ",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientMonitorAssignResponse> findById(
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         PatientMonitorAssign item = service.getById(id);
         PatientMonitorAssignResponse response = PatientMonitorAssignResponse.from(item);
         return ResponseEntity.ok(response);
@@ -62,8 +63,8 @@ public class PatientMonitorAssignController {
             value = "update patient monitor assign",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientMonitorAssignResponse> update(
-            @RequestBody UpdatePatientMonitorAssignRequest request,
-            @PathVariable("id") UUID id) {
+            @Valid @RequestBody UpdatePatientMonitorAssignRequest request,
+            @Valid @PathVariable("id") UUID id) {
         PatientMonitorAssign item = service.update(id, request);
         PatientMonitorAssignResponse response = PatientMonitorAssignResponse.from(item);
         return ResponseEntity.ok(response);
@@ -74,7 +75,18 @@ public class PatientMonitorAssignController {
             value = "delete patient monitor assign",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void delete(
-            @PathVariable("id") UUID id) {
+           @Valid @PathVariable("id") UUID id) {
         this.service.delete(id);
+    }
+
+    @DeleteMapping("/unassign/{id}")
+    @ApiOperation(
+            value = "monitor un assign ",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<PatientMonitorAssignResponse> unAssign(
+            @Valid @PathVariable("id") UUID id) {
+        PatientMonitorAssign item = service.unAssign(id);
+        PatientMonitorAssignResponse response = PatientMonitorAssignResponse.from(item);
+        return ResponseEntity.ok(response);
     }
 }

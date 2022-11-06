@@ -7,5 +7,6 @@ package com.tmx.nari.agm.entity;
  */
 public enum Role {
     ADMIN,
-    USER
+    RESEARCHER,
+    DOCTOR
 }

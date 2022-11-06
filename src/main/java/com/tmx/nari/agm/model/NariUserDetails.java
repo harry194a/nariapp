@@ -1,4 +1,4 @@
-package com.tmx.nari.agm.model.user;
+package com.tmx.nari.agm.model;
 
 import com.tmx.nari.agm.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,12 +16,9 @@ import java.util.List;
 public class NariUserDetails implements UserDetails {
 
     private final String id;
-
     private final String email;
     private final String userName;
-
     private final String password;
-
     private final List<String> roles = new ArrayList<>();
 
     public NariUserDetails(

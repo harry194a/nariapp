@@ -3,7 +3,7 @@ package com.tmx.nari.agm.service.user;
 import com.tmx.nari.agm.model.request.user.CreateUserModel;
 import com.tmx.nari.agm.model.request.user.UpdateUserModel;
 import com.tmx.nari.agm.model.request.user.CreatePasswordRequest;
-import com.tmx.nari.agm.model.user.UserModel;
+import com.tmx.nari.agm.model.models.UserModel;
 
 import java.util.UUID;
 

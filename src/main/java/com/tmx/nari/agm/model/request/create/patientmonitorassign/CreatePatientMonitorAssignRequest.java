@@ -21,13 +21,12 @@ public class CreatePatientMonitorAssignRequest {
     
     private String patientId;
     private String monitorId;
-    private LocalDateTime signInDate;
-
+    
     public PatientMonitorAssign toEntity(){
         PatientMonitorAssign patientMonitorAssign = new PatientMonitorAssign();
         patientMonitorAssign.setPatientId(patientId);
         patientMonitorAssign.setMonitorId(monitorId);
-        patientMonitorAssign.setSignInDate(signInDate);
+        patientMonitorAssign.setSignInDate(LocalDateTime.now());
         
         return patientMonitorAssign;
     }

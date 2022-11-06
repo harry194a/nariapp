@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class UpdateProcessDataRequest {
-    private LocalDateTime timeStart;
+    private LocalDateTime timeStamp;
     private String patientsId;
     private String bloodPressure;
     private String heartRate;
@@ -26,7 +26,7 @@ public class UpdateProcessDataRequest {
     private LocalDateTime endTime;
 
     public ProcessData toEntity(final ProcessData processData) {
-        processData.setTimeStart(timeStart);
+        processData.setTimeStamp(timeStamp);
         processData.setPatientsId(patientsId);
         processData.setBloodPressure(bloodPressure);
         processData.setHeartRate(heartRate);

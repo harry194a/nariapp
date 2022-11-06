@@ -5,6 +5,7 @@ import com.tmx.nari.agm.model.request.create.processdata.CreateProcessDataReques
 import com.tmx.nari.agm.model.request.update.processdata.UpdateProcessDataRequest;
 import com.tmx.nari.agm.repositoy.ProcessDataRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class ProcessDataServiceImpl implements ProcessDataService {
     }
 
     @Override
+    @Transactional
     public ProcessData create(final CreateProcessDataRequest request) {
         Assert.notNull(request, "Request must not be null");
         ProcessData processData = request.toEntity();
@@ -30,6 +32,7 @@ public class ProcessDataServiceImpl implements ProcessDataService {
         return processData;    }
 
     @Override
+    @Transactional
     public ProcessData update(final UUID id, final UpdateProcessDataRequest request) {
         Assert.notNull(id, "Id cannot be null");
         Assert.notNull(request, "Request must not be null");
@@ -38,11 +41,13 @@ public class ProcessDataServiceImpl implements ProcessDataService {
         return repository.save(processData);    }
 
     @Override
+    @Transactional
     public ProcessData getById(final UUID id) {
         return repository.findById(id).orElseThrow(SecurityException::new);
     }
 
     @Override
+    @Transactional
     public void delete(final UUID id) {
         Assert.notNull(id, "Id cannot be null");
         getById(id);

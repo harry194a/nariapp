@@ -1,7 +1,8 @@
-package com.tmx.nari.agm.model.user;
+package com.tmx.nari.agm.model.response;
 
 
 import com.tmx.nari.agm.entity.Role;
+import com.tmx.nari.agm.model.models.UserModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class UserResponse {
     
     private UUID id;
+    private String userId;
     private String email;
     private String firstName;
     private String lastName;
@@ -33,6 +35,7 @@ public class UserResponse {
 
         UserResponse response = new UserResponse();
         response.setId(user.getId());
+        response.setUserId(user.getUserId());
         response.setEmail(user.getEmail());
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());

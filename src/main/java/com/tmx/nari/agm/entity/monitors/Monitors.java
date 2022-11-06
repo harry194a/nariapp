@@ -5,7 +5,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * Created by Harutyun Badeyan
@@ -17,7 +20,12 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Monitors extends AuditableBaseEntity {
-    
+
+    private String name;
     private String model;
+    @Column(unique = true)
     private String monitorId;
+
+    @Enumerated(EnumType.STRING)
+    private MonitorStatus monitorStatus;
 }

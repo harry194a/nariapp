@@ -3,7 +3,7 @@ package com.tmx.nari.agm.config.oauth;
 import com.tmx.nari.agm.config.JwtClaim;
 import com.tmx.nari.agm.model.exeption.ErrorCode;
 import com.tmx.nari.agm.model.exeption.ServiceException;
-import com.tmx.nari.agm.model.user.NariUserDetails;
+import com.tmx.nari.agm.model.NariUserDetails;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

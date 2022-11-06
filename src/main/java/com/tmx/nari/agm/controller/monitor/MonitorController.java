@@ -1,5 +1,6 @@
 package com.tmx.nari.agm.controller.monitor;
 
+import com.tmx.nari.agm.entity.monitors.MonitorStatus;
 import com.tmx.nari.agm.entity.monitors.Monitors;
 import com.tmx.nari.agm.model.request.create.monitor.CreateMonitorRequest;
 import com.tmx.nari.agm.model.request.update.monitor.UpdateMonitorRequest;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -41,7 +44,7 @@ public class MonitorController {
             value = "create Monitor",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MonitorResponse> create(
-            @RequestBody CreateMonitorRequest request) {
+           @Valid @RequestBody CreateMonitorRequest request) {
         Monitors item = service.create(request);
         MonitorResponse response = MonitorResponse.from(item);
         return ResponseEntity.ok(response);
@@ -52,7 +55,7 @@ public class MonitorController {
             value = "find Monitors ",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MonitorResponse> findById(
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         Monitors item = service.getById(id);
         MonitorResponse response = MonitorResponse.from(item);
         return ResponseEntity.ok(response);
@@ -64,7 +67,7 @@ public class MonitorController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MonitorResponse> update(
             @RequestBody UpdateMonitorRequest request,
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         Monitors item = service.update(id, request);
         MonitorResponse response = MonitorResponse.from(item);
         return ResponseEntity.ok(response);
@@ -75,7 +78,16 @@ public class MonitorController {
             value = "delete monitor",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void delete(
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         this.service.delete(id);
+    }
+
+    @GetMapping("/find-status")
+    @ApiOperation(
+            value = "find Monitors by status ",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<List<Monitors>> findByStatus(MonitorStatus status) {
+        List<Monitors> item = service.findAllByMonitorStatus(status);
+        return ResponseEntity.ok(item);
     }
 }

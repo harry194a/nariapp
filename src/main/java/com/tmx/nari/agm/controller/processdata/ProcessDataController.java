@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 /**
@@ -40,8 +41,8 @@ public class ProcessDataController {
             value = "create Data",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProcessDataResponse> create(
-            @RequestBody CreateProcessDataRequest request) {
-        ProcessData item= service.create(request);
+           @Valid @RequestBody CreateProcessDataRequest request) {
+        ProcessData item = service.create(request);
         ProcessDataResponse response = ProcessDataResponse.from(item);
         return ResponseEntity.ok(response);
     }

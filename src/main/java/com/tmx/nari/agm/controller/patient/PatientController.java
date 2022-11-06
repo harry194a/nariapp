@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 /**
@@ -40,7 +41,7 @@ public class PatientController {
             value = "create Patient",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientResponse> create(
-            @RequestBody CreatePatientRequest request) {
+           @Valid @RequestBody CreatePatientRequest request) {
         Patients item = service.create(request);
         PatientResponse response = PatientResponse.from(item);
         return ResponseEntity.ok(response);
@@ -51,7 +52,7 @@ public class PatientController {
             value = "find Patient ",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientResponse> findById(
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         Patients item = service.getById(id);
         PatientResponse response = PatientResponse.from(item);
         return ResponseEntity.ok(response);
@@ -62,8 +63,8 @@ public class PatientController {
             value = "update Patient",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientResponse> update(
-            @RequestBody UpdatePatientRequest request,
-            @PathVariable("id") UUID id) {
+          @Valid  @RequestBody UpdatePatientRequest request,
+          @Valid  @PathVariable("id") UUID id) {
         Patients item = service.update(id, request);
         PatientResponse response = PatientResponse.from(item);
         return ResponseEntity.ok(response);
@@ -74,7 +75,7 @@ public class PatientController {
             value = "delete patient",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void delete(
-            @PathVariable("id") UUID id) {
+            @Valid @PathVariable("id") UUID id) {
         this.service.delete(id);
     }
 }

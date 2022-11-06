@@ -18,6 +18,8 @@ public interface PatientAssignMonitorService {
     PatientMonitorAssign update(final UUID id, final UpdatePatientMonitorAssignRequest request);
 
     PatientMonitorAssign getById(final UUID id);
+    
+    PatientMonitorAssign unAssign(final UUID id);
 
     void delete(final UUID id);
 }

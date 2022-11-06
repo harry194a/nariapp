@@ -6,4 +6,5 @@ package com.tmx.nari.agm.entity.patients;
  * Time: 16:44
  */
 public enum Status {
+    ACTIVE
 }

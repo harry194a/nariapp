@@ -21,7 +21,7 @@ import java.util.UUID;
 public class ProcessDataResponse {
     
     private UUID id;
-    private LocalDateTime timeStart;
+    private LocalDateTime timeStamp;
     private String patientsId;
     private String bloodPressure;
     private String heartRate;
@@ -32,7 +32,7 @@ public class ProcessDataResponse {
             final ProcessData processData) {
         ProcessDataResponse response = new ProcessDataResponse();
         response.setId(processData.getId());
-        response.setTimeStart(processData.getTimeStart());
+        response.setTimeStamp(processData.getTimeStamp());
         response.setPatientsId(processData.getPatientsId());
         response.setBloodPressure(processData.getBloodPressure());
         response.setHeartRate(processData.getHeartRate());

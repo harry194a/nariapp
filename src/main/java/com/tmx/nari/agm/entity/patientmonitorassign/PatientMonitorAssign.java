@@ -22,5 +22,6 @@ public class PatientMonitorAssign extends AuditableBaseEntity {
     private String PatientId;
     private String MonitorId;
     private LocalDateTime SignInDate;
-    
+    private LocalDateTime SignOutDate;
+
 }

@@ -23,6 +23,7 @@ import javax.validation.constraints.NotEmpty;
 public class CreateUserModel {
     @NotEmpty
     private String email;
+    private String userId;
     private String firstName;
     private String lastName;
     private String phone;
@@ -33,6 +34,7 @@ public class CreateUserModel {
     public User toEntity() {
         User user = new User();
         user.setEmail(this.email);
+        user.setUserId(this.userId);
         user.setFirstName(this.firstName);
         user.setLastName(this.lastName);
         user.setPhone(this.phone);

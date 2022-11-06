@@ -5,8 +5,10 @@ import com.tmx.nari.agm.model.request.create.patients.CreatePatientRequest;
 import com.tmx.nari.agm.model.request.update.patient.UpdatePatientRequest;
 import com.tmx.nari.agm.repositoy.PatientsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -23,6 +25,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public Patients create(final CreatePatientRequest request) {
         Assert.notNull(request, "Request must not be null");
         Patients patients = request.toEntity();
@@ -31,6 +34,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public Patients update(final UUID id, final UpdatePatientRequest request) {
         Assert.notNull(id, "Id cannot be null");
         Assert.notNull(request, "Request must not be null");
@@ -40,11 +44,31 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public Patients getById(final UUID id) {
         return repository.findById(id).orElseThrow(SecurityException::new);
     }
 
     @Override
+    @Transactional
+    public Boolean existByPatientsId(final String patientsId) {
+        return repository.existsByPatientId(patientsId);
+    }
+
+    @Override
+    @Transactional
+    public Patients getByPatientsId(final String patientsId) {
+        return repository.findByPatientId(patientsId).orElseThrow(SecurityException::new);
+    }
+
+    @Override
+    @Transactional
+    public List<Patients> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    @Transactional
     public void delete(final UUID id) {
         Assert.notNull(id, "Id cannot be null");
         getById(id);

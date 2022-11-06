@@ -4,6 +4,7 @@ import com.tmx.nari.agm.entity.patients.Patients;
 import com.tmx.nari.agm.model.request.create.patients.CreatePatientRequest;
 import com.tmx.nari.agm.model.request.update.patient.UpdatePatientRequest;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -17,6 +18,12 @@ public interface PatientService {
     Patients update(final UUID id, final UpdatePatientRequest model);
 
     Patients getById(final UUID id);
+    
+    Boolean existByPatientsId(final String patientsId);
+    
+    Patients getByPatientsId(final String patientsId);
+    
+    List<Patients> findAll();
 
     void delete(final UUID id);
 }

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 public class ProcessData extends AuditableBaseEntity {
     
-    private LocalDateTime timeStart;
+    private LocalDateTime timeStamp;
     private String patientsId;
     private String bloodPressure;
     private String heartRate;

@@ -1,4 +1,4 @@
-package com.tmx.nari.agm.model.user;
+package com.tmx.nari.agm.model.models;
 
 import com.tmx.nari.agm.entity.Role;
 import com.tmx.nari.agm.entity.user.User;
@@ -15,6 +15,7 @@ import java.util.UUID;
 public class UserModel {
 
     UUID id;
+    String userId;
     String email;
     String firstName;
     String lastName;
@@ -25,6 +26,7 @@ public class UserModel {
     public static UserModel from(User user) {
         return new UserModel(
                 user.getId(),
+                user.getUserId(), 
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),

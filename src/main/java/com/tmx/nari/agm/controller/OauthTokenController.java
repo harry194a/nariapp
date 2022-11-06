@@ -7,7 +7,7 @@ import com.tmx.nari.agm.config.oauth.OauthTokenRequest;
 import com.tmx.nari.agm.config.oauth.OauthTokenResponse;
 import com.tmx.nari.agm.model.exeption.ErrorCode;
 import com.tmx.nari.agm.model.exeption.ServiceException;
-import com.tmx.nari.agm.model.user.NariUserDetails;
+import com.tmx.nari.agm.model.NariUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
